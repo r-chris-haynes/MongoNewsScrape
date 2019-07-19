@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 var logger = require("morgan");
 var cheerio = require("cheerio");
 var axios = require("axios");
-// var db = require("./models");
+
 
 var PORT = process.env.PORT || 3000;
 
@@ -20,8 +20,11 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-// app.engine("handlebars", exphbs({defaultLayout: "main"}));
-// app.set("view engine", "handlebars");
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
+// Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/newsScrape", { useNewUrlParser: true });
 
 // Start the server
 app.listen(PORT, function() {
