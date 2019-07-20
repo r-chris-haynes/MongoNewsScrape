@@ -29,32 +29,8 @@ app.set("view engine", "handlebars");
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsScrape", { useNewUrlParser: true });
 
-// app.get("/", function(req, res) {
-//   res.render("index");
-// })
-
 app.get("/", function(req, res) {
-  
-  db.Article.find({saved:false})
-    .then(function(dbArticle) {
-      
-      if(dbArticle.length===0)
-      {
-        res.render("index");
-      }
-      else{
-        var hbsObject={
-          data:dbArticle,
-          isArticle:true,
-          isSaved:false
-
-        }
-      res.render("index",hbsObject);
-      }
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
+  res.render("index");
 });
 
 // A GET route for scraping the nba website
